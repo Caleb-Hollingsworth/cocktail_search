@@ -25,14 +25,18 @@ const Search = () => {
 		searchAPI(url, query).then((res) => {
 			console.log(res);
 			if (res.data.drinks) {
-				setNullSearch(false);
-				setDrinks(res.data.drinks);
+				if (type === 'Cocktail Name') {
+					setNullSearch(false);
+					setDrinks(res.data.drinks);
+				} else {
+					//setup function to return clickable cards
+				}
 			} else {
 				setNullSearch(true);
 			}
 		});
 	};
-
+	//function that changes search type ie by ingredient or by name
 	const changeSearchType = () => {
 		if (type === 'Cocktail Name') {
 			setUrl(searchIngredientUrl);
@@ -44,9 +48,9 @@ const Search = () => {
 	};
 
 	//drink list mapping
-	const drinkList = drinks.map((drink) => {
+	const drinkList = drinks.map((drink, id) => {
 		return (
-			<ul>
+			<ul key={id}>
 				<h3>{drink.strDrink}</h3>
 				<h4>Ingredients</h4>
 				<li>{drink.strIngredient1}</li>
