@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { searchAPI } from '../Utils/index';
-import axios from 'axios';
 import '../CSS/Main.css';
 
 const NameSearch = () => {
-	const [drink, setDrink] = useState();
-	const [drinks, setDrinks] = useState([]);
-	const [nullSearch, setNullSearch] = useState(false);
+	//url for searching by drink name
 	const searchNameUrl = 'https://thecocktaildb.com/api/json/v1/1/search.php?s=';
+	//hook for setting drink to search
+	const [drink, setDrink] = useState();
+	//hook for setting array of drinks returned from axios request
+	const [drinks, setDrinks] = useState([]);
+	//hook for providing conditional rendering of empty search results
+	const [nullSearch, setNullSearch] = useState(false);
 
+	//function that calls axios request and sets drinks
 	const searchDrink = (e) => {
 		e.preventDefault();
 		searchAPI(searchNameUrl, drink).then((res) => {
@@ -20,6 +24,8 @@ const NameSearch = () => {
 			}
 		});
 	};
+
+	//drink list mapping
 	const drinkList = drinks.map((drink) => {
 		return (
 			<ul>
