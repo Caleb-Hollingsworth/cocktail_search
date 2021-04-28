@@ -1,10 +1,10 @@
 import './App.css';
-import NameSearch from './NameSearch/NameSearch';
+import Search from './Search/Search';
 
 function App() {
 	return (
 		<div className='App'>
-			<NameSearch />
+			<Search />
 		</div>
 	);
 }

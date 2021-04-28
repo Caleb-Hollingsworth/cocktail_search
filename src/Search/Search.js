@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { searchAPI } from '../Utils/index';
-import '../CSS/Main.css';
+import '../CSS/Search.css';
 
-const NameSearch = () => {
+const Search = () => {
 	//url for searching by drink name
 	const searchNameUrl = 'https://thecocktaildb.com/api/json/v1/1/search.php?s=';
+	//url for searching by ingredient
+	const searchIngredientUrl =
+		'https://thecocktaildb.com/api/json/v1/1/filter.php?i=';
 	//hook for setting drink to search
-	const [drink, setDrink] = useState();
+	const [query, setQuery] = useState();
 	//hook for setting array of drinks returned from axios request
 	const [drinks, setDrinks] = useState([]);
 	//hook for providing conditional rendering of empty search results
 	const [nullSearch, setNullSearch] = useState(false);
+	//hook for setting url
+	const [url, setUrl] = useState(searchNameUrl);
+	//hook for setting type
+	const [type, setType] = useState('Cocktail Name');
 
 	//function that calls axios request and sets drinks
 	const searchDrink = (e) => {
 		e.preventDefault();
-		searchAPI(searchNameUrl, drink).then((res) => {
+		searchAPI(url, query).then((res) => {
+			console.log(res);
 			if (res.data.drinks) {
 				setNullSearch(false);
 				setDrinks(res.data.drinks);
@@ -23,6 +31,16 @@ const NameSearch = () => {
 				setNullSearch(true);
 			}
 		});
+	};
+
+	const changeSearchType = () => {
+		if (type === 'Cocktail Name') {
+			setUrl(searchIngredientUrl);
+			setType('Ingredient');
+		} else {
+			setUrl(searchNameUrl);
+			setType('Cocktail Name');
+		}
 	};
 
 	//drink list mapping
@@ -49,6 +67,20 @@ const NameSearch = () => {
 			</header>
 			<main>
 				<div>
+					<h3>Currently Searching by {type}</h3>
+					<p>
+						Switch to searching by{' '}
+						<button
+							onClick={
+								type === 'Cocktail Name'
+									? () => changeSearchType('Ingredient')
+									: () => changeSearchType('CockTail Name')
+							}>
+							{type === 'Cocktail Name' ? 'Ingredient' : 'Cocktail Name'}
+						</button>
+					</p>
+				</div>
+				<div>
 					<form onSubmit={searchDrink}>
 						<label>
 							Search Cocktails
@@ -56,7 +88,7 @@ const NameSearch = () => {
 								type='text'
 								name='search'
 								placeholder='cocktails'
-								onChange={(e) => setDrink(e.target.value)}
+								onChange={(e) => setQuery(e.target.value)}
 							/>
 						</label>
 						<input type='submit' title='Search' />
@@ -65,7 +97,7 @@ const NameSearch = () => {
 				<div>{drinks && drinkList}</div>
 				<div>
 					{nullSearch && (
-						<p>Oops! There are no drinks with the name {drink}.</p>
+						<p>Oops! There are no drinks with the name {query}.</p>
 					)}
 				</div>
 			</main>
@@ -73,4 +105,4 @@ const NameSearch = () => {
 	);
 };
 
-export default NameSearch;
+export default Search;
