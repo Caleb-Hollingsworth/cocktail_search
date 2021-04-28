@@ -3,14 +3,22 @@ import { searchAPI } from '../Utils/index';
 import axios from 'axios';
 import '../CSS/Main.css';
 
-const Main = () => {
+const NameSearch = () => {
 	const [drink, setDrink] = useState();
 	const [drinks, setDrinks] = useState([]);
+	const [nullSearch, setNullSearch] = useState(false);
 	const searchNameUrl = 'https://thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 	const searchDrink = (e) => {
 		e.preventDefault();
-		searchAPI(searchNameUrl, drink).then((res) => setDrinks(res.data.drinks));
+		searchAPI(searchNameUrl, drink).then((res) => {
+			if (res.data.drinks) {
+				setNullSearch(false);
+				setDrinks(res.data.drinks);
+			} else {
+				setNullSearch(true);
+			}
+		});
 	};
 	const drinkList = drinks.map((drink) => {
 		return (
@@ -48,10 +56,15 @@ const Main = () => {
 						<input type='submit' title='Search' />
 					</form>
 				</div>
-				<div>{drinkList}</div>
+				<div>{drinks && drinkList}</div>
+				<div>
+					{nullSearch && (
+						<p>Oops! There are no drinks with the name {drink}.</p>
+					)}
+				</div>
 			</main>
 		</div>
 	);
 };
 
-export default Main;
+export default NameSearch;
