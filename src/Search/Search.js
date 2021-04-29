@@ -49,12 +49,12 @@ const Search = () => {
 	};
 
 	return (
-		<div>
+		<div className='search-container'>
 			<header>
 				<h2>Welcome to Cocktail Search</h2>
 			</header>
 			<main>
-				<div>
+				<div className='search-info'>
 					<h3>Currently Searching by {type}</h3>
 					<p>
 						Switch to searching by{' '}
@@ -68,18 +68,23 @@ const Search = () => {
 						</button>
 					</p>
 				</div>
-				<div>
+				<div className='search-form'>
 					<form onSubmit={searchDrink}>
 						<label>
 							Search Cocktails
 							<input
+								className='search-form-input'
 								type='text'
 								name='search'
 								placeholder='cocktails'
 								onChange={(e) => setQuery(e.target.value)}
 							/>
 						</label>
-						<input type='submit' title='Search' />
+						<input
+							className='search-form-button'
+							type='submit'
+							title='Search'
+						/>
 					</form>
 				</div>
 				<div>
