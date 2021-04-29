@@ -1,0 +1,35 @@
+.cocktail-cards {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.cards-container {
+	display: inline-grid;
+	place-items: center;
+}
+
+.individual-card {
+	padding: 1vw;
+	height: 27vh;
+	width: 10vw;
+	border: 2px solid black;
+	margin-left: 2vw;
+	margin-right: 2vw;
+	margin-bottom: 10vh;
+	display: flex;
+	flex-direction: column;
+	align-items: space-evenly;
+}
+.individual-card:hover {
+	border: 2px solid rgb(244, 18, 71);
+	cursor: pointer;
+}
+.individual-card img {
+	border-radius: 0.2em;
+	width: 10vw;
+	height: auto;
+}
+.individual-card h3 {
+	text-align: center;
+	font-weight: 800;
+}
