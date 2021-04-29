@@ -19,6 +19,8 @@ const Search = () => {
 	const [url, setUrl] = useState(searchNameUrl);
 	//hook for setting type
 	const [type, setType] = useState('Cocktail Name');
+	//hook for changing search type and resetting page;
+	const [reset, setReset] = useState(false);
 
 	//function that calls axios request and sets drinks
 	const searchDrink = (e) => {
@@ -28,6 +30,7 @@ const Search = () => {
 			if (res.data.drinks) {
 				setNullSearch(false);
 				setDrinks(res.data.drinks);
+				setReset(false);
 			} else {
 				setNullSearch(true);
 			}
@@ -35,6 +38,7 @@ const Search = () => {
 	};
 	//function that changes search type ie by ingredient or by name
 	const changeSearchType = () => {
+		setReset(true);
 		if (type === 'Cocktail Name') {
 			setUrl(searchIngredientUrl);
 			setType('Ingredient');
@@ -45,43 +49,54 @@ const Search = () => {
 	};
 
 	return (
-		<div>
+		<div className='search-container'>
 			<header>
-				<h2>Welcome to Cocktail Search</h2>
+				<h1>Welcome to Cocktail Search</h1>
 			</header>
 			<main>
-				<div>
-					<h3>Currently Searching by {type}</h3>
-					<p>
-						Switch to searching by{' '}
-						<button
-							onClick={
-								type === 'Cocktail Name'
-									? () => changeSearchType('Ingredient')
-									: () => changeSearchType('CockTail Name')
-							}>
-							{type === 'Cocktail Name' ? 'Ingredient' : 'Cocktail Name'}
-						</button>
-					</p>
-				</div>
-				<div>
-					<form onSubmit={searchDrink}>
-						<label>
-							Search Cocktails
+				<div className='search-info-container'>
+					<div className='search-info'>
+						<h3>Currently Searching by {type}</h3>
+						<h3>
+							Switch to searching by{' '}
+							<button
+								onClick={
+									type === 'Cocktail Name'
+										? () => changeSearchType('Ingredient')
+										: () => changeSearchType('CockTail Name')
+								}>
+								{type === 'Cocktail Name' ? 'Ingredient' : 'Cocktail Name'}
+							</button>
+						</h3>
+					</div>
+					<div className='search-form'>
+						<form onSubmit={searchDrink}>
+							<label>
+								Search Cocktails
+								<input
+									className='search-form-input'
+									type='text'
+									name='search'
+									placeholder={type}
+									onChange={(e) => setQuery(e.target.value)}
+								/>
+							</label>
 							<input
-								type='text'
-								name='search'
-								placeholder='cocktails'
-								onChange={(e) => setQuery(e.target.value)}
+								className='search-form-button'
+								type='submit'
+								title='Search'
 							/>
-						</label>
-						<input type='submit' title='Search' />
-					</form>
+						</form>
+					</div>
 				</div>
-				<div>{drinks && <CocktailCards drinks={drinks} type={type} />}</div>
-				<div>
+				<div className='cocktail-list'>
+					{drinks && !reset && <CocktailCards drinks={drinks} type={type} />}
+				</div>
+				<div className='null-search'>
 					{nullSearch && (
-						<p>Oops! There are no drinks with the name {query}.</p>
+						<h1>
+							Oops! There are no {type}s with the name '{query}'.
+						</h1>
 					)}
 				</div>
 			</main>
