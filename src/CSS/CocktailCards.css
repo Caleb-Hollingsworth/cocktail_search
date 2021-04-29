@@ -32,4 +32,6 @@
 }
 .individual-card h3 {
 	text-align: center;
+	font-family: var(--roboto);
+	font-weight: 800;
 }

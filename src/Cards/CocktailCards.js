@@ -31,11 +31,8 @@ const CocktailCards = ({ drinks, type }) => {
 
 	const cards = drinks.map((drink, id) => {
 		return (
-			<div className='cards-container'>
-				<div
-					className='individual-card'
-					key={id}
-					onClick={() => selectCocktail(drink)}>
+			<div className='cards-container' key={id}>
+				<div className='individual-card' onClick={() => selectCocktail(drink)}>
 					<img src={drink.strDrinkThumb} alt='cocktail thumbnail' />
 					<h3>{drink.strDrink}</h3>
 				</div>

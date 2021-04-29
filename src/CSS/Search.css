@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 /* .search-container {
 } */
 .search-container header h2 {
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--roboto);
 }
 .search-info {
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--roboto);
 }
 .search-form {
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--roboto);
 	margin-bottom: 15vh;
 }
-.cocktail-list {
+/* .cocktail-list {
 	display: flex;
 	justify-content: center;
-}
+} */

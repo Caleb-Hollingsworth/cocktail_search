@@ -1,17 +1,18 @@
 import React from 'react';
+import '../CSS/CocktailCard.css';
 
 const CocktailCard = ({ drink, showIndividualCard }) => {
 	return (
-		<div>
-			<div onClick={() => showIndividualCard(false)}>
+		<div className='cocktail-card-container'>
+			<div onClick={() => showIndividualCard(false)} className='back-button'>
 				<p>Go back to list</p>
 			</div>
-			<div>
+			<div className='cocktail-info-container'>
 				<img src={drink.strDrinkThumb} alt='cocktail thumbnail' />
 				<ul>
-					<h3>{drink.strDrink}</h3>
-					<div>
-						<h4>Ingredients</h4>
+					<h1>{drink.strDrink}</h1>
+					<div className='cocktail-ingredients'>
+						<h2>Ingredients</h2>
 
 						{drink.strIngredient1 && (
 							<li>
@@ -90,8 +91,8 @@ const CocktailCard = ({ drink, showIndividualCard }) => {
 						)}
 					</div>
 
-					<div>
-						<h4>Instructions:</h4>
+					<div className='cocktail-instructions'>
+						<h2>Instructions:</h2>
 						<p>{drink.strInstructions}</p>
 					</div>
 				</ul>
