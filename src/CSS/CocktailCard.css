@@ -3,12 +3,10 @@
 	align-items: flex-start;
 	justify-content: center;
 	width: 60vw;
-	font-family: var(--roboto);
 	font-weight: 800;
 }
 .back-button {
 	cursor: pointer;
-	font-family: var(--roboto);
 	font-weight: 800;
 	width: 8vw;
 	display: flex;
