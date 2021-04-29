@@ -11,3 +11,7 @@
 	font-family: 'Roboto', sans-serif;
 	margin-bottom: 15vh;
 }
+.cocktail-list {
+	display: flex;
+	justify-content: center;
+}

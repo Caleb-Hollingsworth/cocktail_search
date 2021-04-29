@@ -87,7 +87,7 @@ const Search = () => {
 						/>
 					</form>
 				</div>
-				<div>
+				<div className='cocktail-list'>
 					{drinks && !reset && <CocktailCards drinks={drinks} type={type} />}
 				</div>
 				<div>

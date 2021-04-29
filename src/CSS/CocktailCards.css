@@ -1,17 +1,19 @@
 .cocktail-cards {
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
 }
 .cards-container {
 	display: inline-grid;
+	place-items: center;
 }
 
 .individual-card {
-	background-color: green;
 	padding: 1vw;
 	height: 30vh;
 	width: 10vw;
 	border: 1px solid black;
+	border-radius: 2em;
 	margin-left: 2vw;
 	margin-right: 2vw;
 	margin-bottom: 10vh;
