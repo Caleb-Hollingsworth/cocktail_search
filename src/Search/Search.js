@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { searchAPI } from '../Utils/index';
+import CocktailCards from '../Cards/CocktailCards';
 import '../CSS/Search.css';
 
 const Search = () => {
@@ -32,7 +33,7 @@ const Search = () => {
 			}
 		});
 	};
-
+	//function that changes search type ie by ingredient or by name
 	const changeSearchType = () => {
 		if (type === 'Cocktail Name') {
 			setUrl(searchIngredientUrl);
@@ -43,23 +44,6 @@ const Search = () => {
 		}
 	};
 
-	//drink list mapping
-	const drinkList = drinks.map((drink) => {
-		return (
-			<ul>
-				<h3>{drink.strDrink}</h3>
-				<h4>Ingredients</h4>
-				<li>{drink.strIngredient1}</li>
-				<li>{drink.strIngredient2}</li>
-				<li>{drink.strIngredient3}</li>
-				<li>{drink.strIngredient4}</li>
-				<div>
-					<h4>Instructions:</h4>
-					<p>{drink.strInstructions}</p>
-				</div>
-			</ul>
-		);
-	});
 	return (
 		<div>
 			<header>
@@ -94,7 +78,7 @@ const Search = () => {
 						<input type='submit' title='Search' />
 					</form>
 				</div>
-				<div>{drinks && drinkList}</div>
+				<div>{drinks && <CocktailCards drinks={drinks} type={type} />}</div>
 				<div>
 					{nullSearch && (
 						<p>Oops! There are no drinks with the name {query}.</p>
