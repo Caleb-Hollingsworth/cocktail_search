@@ -5,8 +5,8 @@
 ## To run this application:
 
 1. Clone this repository
-2. Run npm install in your terminal
-3. run npm start in your terminal
+2. Run ```npm install``` in your terminal
+3. run ```npm start``` in your terminal
 
 
 
