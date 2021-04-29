@@ -10,6 +10,7 @@ const CocktailCard = ({ drink, showIndividualCard }) => {
 				<h3>{drink.strDrink}</h3>
 				<div>
 					<h4>Ingredients</h4>
+
 					{drink.strIngredient1 && (
 						<li>
 							{drink.strMeasure1} {drink.strIngredient1}

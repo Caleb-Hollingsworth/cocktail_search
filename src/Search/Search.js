@@ -19,6 +19,8 @@ const Search = () => {
 	const [url, setUrl] = useState(searchNameUrl);
 	//hook for setting type
 	const [type, setType] = useState('Cocktail Name');
+	//hook for changing search type and resetting page;
+	const [reset, setReset] = useState(false);
 
 	//function that calls axios request and sets drinks
 	const searchDrink = (e) => {
@@ -28,6 +30,7 @@ const Search = () => {
 			if (res.data.drinks) {
 				setNullSearch(false);
 				setDrinks(res.data.drinks);
+				setReset(false);
 			} else {
 				setNullSearch(true);
 			}
@@ -35,6 +38,7 @@ const Search = () => {
 	};
 	//function that changes search type ie by ingredient or by name
 	const changeSearchType = () => {
+		setReset(true);
 		if (type === 'Cocktail Name') {
 			setUrl(searchIngredientUrl);
 			setType('Ingredient');
@@ -78,7 +82,9 @@ const Search = () => {
 						<input type='submit' title='Search' />
 					</form>
 				</div>
-				<div>{drinks && <CocktailCards drinks={drinks} type={type} />}</div>
+				<div>
+					{drinks && !reset && <CocktailCards drinks={drinks} type={type} />}
+				</div>
 				<div>
 					{nullSearch && (
 						<p>Oops! There are no drinks with the name {query}.</p>
