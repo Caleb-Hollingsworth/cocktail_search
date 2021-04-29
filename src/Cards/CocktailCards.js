@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CocktailCard from './CocktailCard';
 import { searchAPI } from '../Utils/index';
+import '../CSS/CocktailCards.css';
 
 const CocktailCards = ({ drinks, type }) => {
 	//hook for selecting individual card
@@ -30,8 +31,11 @@ const CocktailCards = ({ drinks, type }) => {
 
 	const cards = drinks.map((drink, id) => {
 		return (
-			<div key={id} onClick={() => selectCocktail(drink)}>
-				<div>
+			<div className='cards-container'>
+				<div
+					className='individual-card'
+					key={id}
+					onClick={() => selectCocktail(drink)}>
 					<img src={drink.strDrinkThumb} alt='cocktail thumbnail' />
 					<h3>{drink.strDrink}</h3>
 				</div>
@@ -39,7 +43,7 @@ const CocktailCards = ({ drinks, type }) => {
 		);
 	});
 	return (
-		<div>
+		<div className='cocktail-cards'>
 			{!individualCard && <div>{cards}</div>}
 			{individualCard && (
 				<div>

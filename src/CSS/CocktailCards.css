@@ -1,0 +1,22 @@
+.cocktail-cards {
+	display: flex;
+	justify-content: center;
+}
+.cards-container {
+	display: inline-grid;
+}
+
+.individual-card {
+	background-color: green;
+	padding: 1vw;
+	height: 30vh;
+	width: 10vw;
+	border: 1px solid black;
+	margin-left: 2vw;
+	margin-right: 2vw;
+	margin-bottom: 10vh;
+}
+.individual-card img {
+	width: 10vw;
+	height: auto;
+}
