@@ -26,7 +26,6 @@ const Search = () => {
 	const searchDrink = (e) => {
 		e.preventDefault();
 		searchAPI(url, query).then((res) => {
-			console.log(res);
 			if (res.data.drinks) {
 				setNullSearch(false);
 				setDrinks(res.data.drinks);
